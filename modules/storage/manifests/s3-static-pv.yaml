@@ -1,0 +1,38 @@
+# Optional static volume for the Mountpoint for S3 CSI driver.
+# Replace the bucket name, then: kubectl apply -f s3-static-pv.yaml
+# Do not commit a real bucket name if it identifies a private account you care about.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: s3-lab
+spec:
+  capacity:
+    storage: 1200Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  claimRef:
+    namespace: demo
+    name: s3-lab
+  mountOptions:
+    - allow-delete
+    - region us-east-1
+  csi:
+    driver: s3.csi.aws.com
+    volumeHandle: s3-lab
+    volumeAttributes:
+      bucketName: REPLACE_WITH_LAB_BUCKET
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: s3-lab
+  namespace: demo
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1200Gi
+  volumeName: s3-lab

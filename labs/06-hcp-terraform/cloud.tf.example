@@ -1,0 +1,32 @@
+# HCP Terraform (Terraform Cloud) configuration. Copy the block into main.tf
+# in place of the current terraform block when you are ready to use a remote
+# workspace. terraform login stores a token in your home directory, not in git.
+#
+# terraform {
+#   required_version = "~> 1.12.0"
+#
+#   cloud {
+#     organization = "your-org"
+#
+#     workspaces {
+#       project = "terraform-associate-004"
+#       name    = "eks-dev"
+#     }
+#   }
+# }
+#
+# Projects group workspaces (objective 8c). Put dev, staging, and prod
+# workspaces for this lab in one project. Variable sets attach to a project
+# or to selected workspaces so account ids and region are not copied by hand.
+#
+# Collaboration and governance (objective 8b), none of which run locally:
+# - Teams and team access on the project or workspace
+# - Sentinel or OPA policy sets, evaluated on runs
+# - Run tasks
+# - Drift detection and health assessments
+# - Private module registry
+# - Dynamic provider credentials instead of long-lived AWS keys
+# - Change requests / speculative plans on pull requests
+#
+# CLI: terraform login, then terraform plan runs remotely when the cloud
+# block is active. terraform init migrates local state if you already applied.

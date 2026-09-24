@@ -1,0 +1,23 @@
+# Import example. Replace the id, remove the ".example" suffix by copying
+# the block into imports.tf, and run terraform plan. Terraform 1.5+ import
+# blocks are declarative. Terraform 1.12 can also import with an identity map
+# on resources that support it (see aws_eks_capability in the provider docs).
+#
+# import {
+#   to = aws_s3_bucket.existing
+#   id = "the-existing-bucket-name"
+# }
+#
+# resource "aws_s3_bucket" "existing" {
+#   bucket = "the-existing-bucket-name"
+# }
+#
+# CLI equivalent:
+#   terraform import aws_s3_bucket.existing the-existing-bucket-name
+#
+# removed {
+#   from = aws_s3_bucket.existing
+#   lifecycle {
+#     destroy = false
+#   }
+# }
