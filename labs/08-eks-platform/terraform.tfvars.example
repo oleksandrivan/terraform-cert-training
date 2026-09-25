@@ -1,0 +1,49 @@
+# Copy to terraform.tfvars and uncomment one phase at a time.
+# Defaults in variables.tf create nothing. Read README.md before apply.
+#
+# aws_region          = "us-east-1"
+# allowed_account_ids = ["123456789012"]
+
+# Phase A — VPC only. No NAT, no hourly charge beyond optional public IPv4 on nothing yet.
+# enable_vpc = true
+
+# Phase A2 — private nodes. NAT is about 0.045 USD/hour. Leave this off unless you need it.
+# enable_vpc             = true
+# enable_nat_gateway     = true
+# acknowledge_nat_cost   = true
+
+# Phase B — EKS. Control plane about 0.10 USD/hour plus one t3.medium.
+# enable_vpc           = true
+# enable_eks           = true
+# acknowledge_eks_cost = true
+
+# Phase C — AWS Load Balancer Controller and VPC Lattice.
+# enable_alb_controller = true
+# enable_vpc_lattice    = true
+# enable_gateway_controller = true
+# # second apply, after CRDs exist:
+# create_gateway_class = true
+
+# Phase D — storage.
+# enable_s3     = true
+# enable_ebs_csi = true
+# enable_efs    = true
+# enable_s3_csi = true
+
+# Phase E — Karpenter. Delete NodePools before terraform destroy.
+# enable_karpenter             = true
+# acknowledge_karpenter_cost   = true
+# # second apply:
+# manage_karpenter_manifests   = true
+
+# Phase F — workload Pod Identity and NetworkPolicy.
+# enable_s3                 = true
+# enable_network_policy     = true
+# enable_pod_identity_demo  = true
+
+# Phase G — CloudWatch Container Insights and control plane logs.
+# enable_observability = true
+
+# Phase H — EKS Capability (ACK) scoped to the lab bucket.
+# enable_s3           = true
+# enable_capabilities = true

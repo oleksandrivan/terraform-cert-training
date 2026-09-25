@@ -1,0 +1,20 @@
+# Remote backend example for Terraform 1.12.
+# Do not commit a copy of this file named backend.tf with real bucket names
+# if those names identify an account you do not want public.
+#
+# Native S3 locking (use_lockfile) shipped in Terraform 1.10 and does not
+# need a DynamoDB table. The Associate exam still expects you to know
+# DynamoDB locking. backend/bootstrap can create either.
+#
+# terraform {
+#   backend "s3" {
+#     bucket       = "tf004-dev-ACCOUNT-tfstate"
+#     key          = "labs/05-state/terraform.tfstate"
+#     region       = "us-east-1"
+#     encrypt      = true
+#     use_lockfile = true
+#
+#     # Legacy lock table. Optional next to use_lockfile.
+#     # dynamodb_table = "tf004-dev-tf-locks"
+#   }
+# }

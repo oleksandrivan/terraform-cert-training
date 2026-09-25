@@ -1,0 +1,34 @@
+# Terraform working directory and crash logs
+.terraform/
+.terraform.tfstate.lock.info
+crash.log
+crash.*.log
+
+# State — never commit real state
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Variable files that may contain account-specific values or secrets.
+# Examples are allowed.
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# CLI overrides and local provider mirrors
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Debug logs. TF_LOG_PATH output can contain sensitive values.
+tf.log
+*.log
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
